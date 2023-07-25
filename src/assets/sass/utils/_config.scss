@@ -1,0 +1,127 @@
+/* _config.scss */
+@use "sass:math";
+/* ---------------------------------------------------------------------
+ _config contains project-specific settings
+------------------------------------------------------------------------ */
+
+/* ---------------------------------------------------------------------
+ Breakpoints Map
+------------------------------------------------------------------------ */
+$breakpoints: (
+	"xxs": "0",
+	"xs": "375px",
+	"sm": "576px",
+	"md": "768px", 
+	"lg": "1024px",
+	"xl": "1280px",
+	"xxl": "1440px"
+);
+
+/* ---------------------------------------------------------------------
+ Fonts
+ font url is relative to our compiled stylesheet
+------------------------------------------------------------------------ */
+@mixin getFont($fontname, $dir: null, $filename, $style: null, $weight: 400) {
+
+	@font-face {
+		$downloadable-path: if($dir,'../fonts/#{$dir}/#{$filename}','../fonts/#{$filename}/#{$filename}');
+		$local-path: '#{$filename}';
+
+		font-display: swap;
+		font-family: $fontname;
+		font-style: $style;
+		font-weight: $weight;
+		src: local('#{$local-path}.woff2'), url('#{$downloadable-path}.woff2') format('woff2');
+	}
+}
+
+// Define project fonts
+$primary-name: 'Inter Regular';
+$primary-file: 'Inter-Regular';
+$primary-serif: 'sans-serif'; // e.g. sans-serif || serif
+
+$secondary-name: 'GT Ultra Standard Black Trial';
+$secondary-file: 'GT-Ultra-Standard-Black-Trial';
+$secondary-serif: 'serif';
+
+$tertiary-name: 'GT Ultra Median Regular Trial';
+$tertiary-file: 'GT-Ultra-Median-Regular-Trial';
+$tertiary-serif: 'serif';
+
+// Inter Regular
+@include getFont($primary-name,$primary-file,$primary-file, normal, 400);
+// GT Ultra Standard Regular
+@include getFont($secondary-name,$secondary-file,$secondary-file, normal, 900);
+// GT Ultra Median
+@include getFont($tertiary-name,$tertiary-file,$tertiary-file, normal, 900);
+
+$font-primary: $primary-name, $primary-serif;
+$font-secondary: $secondary-name, $secondary-serif;
+$font-tertiary: $tertiary-name, $tertiary-serif;
+
+/* ---------------------------------------------------------------------
+ palettes() Map
+ Maps global color families, assigning a "core" or default to each one;
+ Hexidecimals per family should be defined in increments of 10.
+
+ Example:
+
+ 'yellow': (
+	core: #FBF8E9,
+	10: #FFA319,
+	20: #F7EDBA,
+	30: #EC9213
+  )
+------------------------------------------------------------------------ */
+$palettes: (
+
+	'blue': (
+		core: #1F96E0,
+	),
+	'orange': (
+		core: #FAC8A9,
+	),
+	'pink': (
+		core: #FFBDF2,
+	),
+	'white': (
+		core: #FFFFFF,
+		10: #F4F2E6,
+	),
+	'black': (
+		core: #000000,
+		10: #292525,
+		20: #595956
+	)
+
+);
+
+/* ---------------------------------------------------------------------
+ getColor()
+ Retrieves color from palettes() map based on hue, and optional tone parameters
+
+ // Props to https://www.ibm.com/design/language/resources for the conditional
+ // which enforces the %10 convention within the palette map
+
+ // Usage:
+ // background: getColor('gray', 10); // #ecf0f4
+ // background: getColor('gray');     // #5E788D
+------------------------------------------------------------------------ */
+@function getColor($color, $tone: 'core') {
+
+	@if type-of($tone) == 'number' {
+
+		@if $tone % 10 == $tone {
+			$tone: $tone * 10;
+		}
+
+	}
+
+	$color-family: map-get($palettes, $color);
+	// Make sure color family exists; default to black
+	$color-hex: if($color-family,map-get($color-family, $tone),#000);
+
+	@return $color-hex;
+
+}
+

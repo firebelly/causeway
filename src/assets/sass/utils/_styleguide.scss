@@ -1,0 +1,111 @@
+/* _styleguide.scss */
+@use "mixins" as *;
+@use "helpers" as *;
+@use "config" as *;
+@use "sass:math";
+@use "sass:string";
+@use "sass:list";
+
+/* ---------------------------------------------------------------------
+ _styleguide contains project-specific style patterns
+------------------------------------------------------------------------ */
+// svg path, relative to compiled stylesheet
+$svg-path: '../svgs/';
+$img-path: '../images/';
+
+/* ---------------------------------------------------------------------
+ Type Map
+
+ 1. ems based on 1rem-sized parent
+ 2. relative line-heights
+ 3. add as many type-related declarations as needed
+
+ Example:
+ 
+ "h1-lg": (
+	font: 11em/109% $font-primary,
+	letter-spacing: 0.01em
+ ),
+ "h2-lg": (
+	font: 8em/90% $font-secondary,
+	letter-spacing: 0.02em,
+	text-transform: uppercase
+),
+------------------------------------------------------------------------ */
+$text-map: (
+
+	// Causeway type
+	/////////////////////
+	// Headlines 1
+	"h1-lg": (
+		font: 12em/90% $font-secondary,
+		letter-spacing: -3.6px,
+	),
+	"h2-lg": (
+		font: 4.5em/90% $font-secondary,
+		letter-spacing: -3.6px,
+	),
+	"h3-lg": (
+		font: 4.5em/100% $font-secondary,
+		letter-spacing: -1.35px,
+	),
+	"h4-lg": (
+		font: 3.6em/120% $font-tertiary,
+		letter-spacing: -1.08px,
+	),
+	"p1-std": (
+		font: 2.4em/125% $font-primary,
+		letter-spacing: -0.48px,
+	),
+	"button": (
+		font: 1.8em/138.889% $font-primary,
+		font-weight: 900,
+		letter-spacing: -0.36px,
+	),
+	"caption-p": (
+		font: 1.4em/142.857% $font-primary,
+		letter-spacing: 0.015em
+	),
+	"caption-title": (
+		font: 1.4em/178.571% $font-primary,
+		letter-spacing: 2.8px,
+		text-transform: uppercase
+	),
+	"nav-title": (
+		font: 1.6em/140% $font-primary,
+		font-weight: 500
+	),
+	"nav-link": (
+		font: 1.4em/130% $font-primary,
+		font-weight: 500
+	),
+	"card-title": (
+		font: 3.0638em/120% $font-primary,
+		font-weight: 600
+	),
+	"card-subtitle": (
+		font: 1.8383em/130% $font-primary,
+		font-weight: 600
+	),
+	"card-byline": (
+		font: 2.1447em/130% $font-primary,
+		font-weight: 500
+	)
+	
+);
+
+/* ---------------------------------------------------------------------
+ Type Map
+
+ Example Usage:
+ getType('h2-lg');
+------------------------------------------------------------------------ */
+@mixin getType($name) {
+	$type-attrs: map-get($text-map, $name);
+
+	// Explode the attr-props
+	@each $attr, $prop in $type-attrs {
+		#{$attr}: $prop;
+	}
+}
+
