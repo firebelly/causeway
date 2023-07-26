@@ -1,9 +1,12 @@
 <script setup>
+import FormBlock from './FormBlock.vue'
 import FooterNav from './FooterNav.vue'
 import FooterUtility from './FooterUtility.vue'
 </script>
 
 <template>
+
+    <FormBlock />
 
     <FooterNav />
     

@@ -1,9 +1,8 @@
 <template>
-    <figure 
-      :class="[`innerSection innerSection--${slug}`]">
-        
+    <figure class="videoBlock">
         <video 
             :poster="`/src/assets/videos/${text('poster')}.png`" 
+            class="videoBlock-media"
             controls 
             width="1600"
             >
@@ -14,8 +13,10 @@
                 :src="`/src/assets/videos/${text('video')}.mp4`"
                 type="video/mp4">    
         </video>
-        <figcaption class="quoteBlock-attribution">
-          {{ text('caption') }}
+        <figcaption 
+          class="videoBlock-caption"
+          v-if="text('caption')"
+          v-html="text('caption')">
         </figcaption>
     </figure>
 </template>
@@ -29,10 +30,10 @@ export default {
       },  
       options() {
         return {
-          'video-1': {
-            'video': 'video-placeholder',
-            'poster': 'video-placeholder-poster',
-            'caption': ''
+          placeholder: {
+            video: 'video-placeholder',
+            poster: 'video-placeholder-poster',
+            caption: null
           }
         }
       }

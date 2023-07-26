@@ -1,11 +1,13 @@
 <template>
     <section 
-      :class="[`innerSection innerSection--${slug}`]">
+        class="innerSection innerSection--bulletin"
+        :class="`_is-${text('theme')}`">
         <h1 class="innerSection-prelude">{{ text('prelude') }}</h1>
         <h2 class="innerSection-title innerSection-title--bulletin">{{ text('title') }}</h2>
-        <p class="innerSection-content innerSection-content--bulletin">
-          {{ text('content') }}
-        </p>
+        <div 
+          class="innerSection-content innerSection-content--bulletin"
+          v-html="text('content')">
+        </div>
     </section>
 </template>
 
@@ -19,9 +21,10 @@ export default {
       options() {
         return {
           'vision': {
+            'theme': 'white-on-black',
             'prelude': 'Same Vision, Bolder Mission',
             'title': 'Our communities are strongest when government, philanthropy, business, and volunteers work together.',
-            'content': 'Causeway is the bridge. United, we shift resources and power to stengthen communities.'
+            'content': '<p>Causeway is the bridge. United, we shift resources and power to stengthen communities.</p>'
           }
         }
       }

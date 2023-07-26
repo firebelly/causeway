@@ -1,9 +1,11 @@
 <script setup>
-import Splash from './components/Splash.vue'
+import SplashSingle from './components/SplashSingle.vue'
 import Bulletin from './components/Bulletin.vue'
-import Quote from './components/Quote.vue'
+import QuoteBlock from './components/QuoteBlock.vue'
 import Video from './components/Video.vue'
 import Article from './components/Article.vue'
+import StyleSingle from './components/StyleSingle.vue'
+import PostBlock from './components/PostBlock.vue'
 import Footer from './components/Footer.vue'
 
 </script>
@@ -24,20 +26,42 @@ import Footer from './components/Footer.vue'
       src="./assets/svgs/causeway-logo.svg" 
       width="160" 
       height="37" />  
+
+      <div class="primaryHeader-buttons">
+        <button
+            class="globalButton globalButton--alt" 
+            type="button">
+            <span class="globalButton-label">
+                Sign In
+            </span>
+        </button>
+    
+        <button 
+            class="globalButton globalButton"
+            type="button">
+            <span class="globalButton-label">
+                Join
+            </span>
+        </button>
+      </div>
   </header>
 
   <main class="primaryContent" id="main">
-    <Splash />
+    <SplashSingle />
     <Bulletin slug="vision" />
-    <Quote slug="quote-1" />
-    <Video slug="video-1" />
-    <Article slug="impact" stats="true" quote="true" />
-    <Article slug="future" stats="false" quote="true" />
+    <QuoteBlock slug="intro" />
+    <Video slug="placeholder" />
+    <Article slug="impact" hasStats="true" hasQuote="true" />
+    <Article slug="future" hasStats="false" hasQuote="true" />
+    <StyleSingle />
+    <PostBlock />
   </main>
 
   <footer class="primaryFooter" id="footer">
     <Footer />
   </footer>
+
+  <div id="viewport" class="viewport _is-debug"></div>
 
 </template>
 

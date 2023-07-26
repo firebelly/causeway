@@ -68,6 +68,7 @@ $text-map: (
 	),
 	"caption-title": (
 		font: 1.4em/178.571% $font-primary,
+		font-weight: 600,
 		letter-spacing: 2.8px,
 		text-transform: uppercase
 	),
@@ -76,8 +77,9 @@ $text-map: (
 		font-weight: 500
 	),
 	"nav-link": (
-		font: 1.4em/130% $font-primary,
-		font-weight: 500
+		font: 1.4em/120% $font-primary,
+		font-weight: 600,
+		letter-spacing: -0.28px,
 	),
 	"card-title": (
 		font: 3.0638em/120% $font-primary,

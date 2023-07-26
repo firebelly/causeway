@@ -16,5 +16,10 @@ export default {
         if (typeof val === "string") {
             return val.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
         }
+    },
+    slugify(val) {
+        if (typeof val === "string") {
+            return val.toLowerCase().split(' ').join('-');
+        }
     }
   };
