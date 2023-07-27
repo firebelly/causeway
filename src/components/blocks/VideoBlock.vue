@@ -1,3 +1,21 @@
+<script setup>
+
+const props = defineProps({
+  slug: String
+})
+
+const options = {
+  placeholder: {
+      video: 'video-placeholder',
+      poster: 'video-placeholder-poster',
+      caption: null
+    }
+}
+
+const text = (key) => options[props.slug][key]
+
+</script>
+
 <template>
     <figure class="videoBlock">
         <video 
@@ -21,22 +39,3 @@
     </figure>
 </template>
 
-<script>
-export default {
-    props: ['slug'],
-    computed: {
-      text() {
-        return key => this.options[`${this.slug}`][key];
-      },  
-      options() {
-        return {
-          placeholder: {
-            video: 'video-placeholder',
-            poster: 'video-placeholder-poster',
-            caption: null
-          }
-        }
-      }
-    }
-  };
-</script>

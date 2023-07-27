@@ -1,3 +1,18 @@
+<script setup>
+import filters from '../../assets/scripts/filters'
+
+const utilityLinks = [
+    'Privacy',
+    'Terms'
+]
+const socialLinks = [
+    'Instagram',
+    'Facebook',
+    'LinkedIn',
+    'Twitter'
+]
+</script>
+
 <template>
 
     <img alt="Abbreviated Causeway Logo" src="src/assets/svgs/causeway-logo-abbr.svg" width="20" height="20" />
@@ -39,27 +54,3 @@
     </ul>
 </template>
 
-<script>
-import filters from '../assets/scripts/filters'
-export default {
-    setup() {
-        return {
-            filters
-        }
-    },
-    data() {
-        return {
-            utilityLinks: [
-                'Privacy',
-                'Terms'
-            ],
-            socialLinks: [
-                'Instagram',
-                'Facebook',
-                'LinkedIn',
-                'Twitter'
-            ],
-        };
-    },
-};
-</script>

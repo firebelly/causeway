@@ -82,6 +82,7 @@ strong {
 picture,
 img {
 	display: block;
+	height: auto;
 	max-width: 100%;
 }
 
@@ -135,8 +136,10 @@ img {
 	background: getColor('black',10);
 	display: flex;
 	flex-flow: row nowrap;
+	align-items: center;
+	font-size: 1rem;
 
-	&-label {
+	&-title {
 		@include visuallyHide;
 	}
 
@@ -144,6 +147,16 @@ img {
 		height: 36.86px;
 		width: 160px;
 		flex-basis: auto;
+	}
+
+	&-label {
+		$margin: math.div(8,16);
+		margin-left: #{$margin}em;
+		flex-basis: 100%;
+		align-self: end;
+		color: getColor('white',10);
+		@include getType('nav-title');
+		font-weight: 400;
 	}
 
 	&-buttons {
@@ -170,6 +183,12 @@ img {
 		@include getType('nav-link');
 	}
 
+	@media (hover: hover){
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
 }
 
 /* ---------------------------------------------------------------------
@@ -183,21 +202,22 @@ img {
 /* ---------------------------------------------------------------------
   Themes
 ------------------------------------------------------------------------ */
-._is-black-on-white {
+// black-on-white
+._is-bow {
 	background-color: getColor('white',10);
 	* {
 		color: getColor('black',10);
 	}
 }
-
-._is-white-on-black {
+// white-on-black
+._is-wob {
 	background: getColor('black',10);
 	* {
 		color: getColor('white',10);
 	}
 }
-
-._is-black-on-orange {
+// black-on-orange
+._is-boo {
 	background: getColor('orange');
 	* {
 		color: getColor('black',10);
@@ -211,8 +231,11 @@ img {
 	$selector: &;
 	font-size: 1rem;
 	border-radius: 10px;
+	margin: 6em 0;
 	padding: 0 8.1em;
 
+	// Variants
+	///////////////////////////
 	&--splash {
 		padding-top: 10em;
 		padding-bottom: 14.963em;
@@ -224,10 +247,23 @@ img {
 	}
 
 	&--bulletin {
+		margin-bottom: 0;
 		padding-top: 14.2em;
 		padding-bottom: 31.1em;
 	}
 
+	&--article {
+		padding-top: 29.9em;
+
+		&._has-bg {
+			background-image: url('../images/bg-gradient.png');
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+	}
+	///////////////////////////
+ 
 	&-prelude {
 		$margin: math.div(28,14);
 		@include getType('caption-title');	
@@ -249,6 +285,10 @@ img {
 			margin-bottom: #{$margin}em;
 			text-align: center;
 		}
+
+		#{$selector}--article & {
+			max-width: 675px;
+		}
 	}
 
 	&-content {
@@ -259,9 +299,37 @@ img {
 
 		#{$selector}--bulletin & {
 			margin: 0 auto;
+			max-width: 430px;
 			text-align: center;
 		}
+
+		#{$selector}--article & {
+			max-width: 675px;
+		}
 	}
+
+	&-asset {
+		display: flex;
+    	flex-flow: row wrap;
+    	justify-content: end;
+		margin-bottom: 7em;
+
+		&-image {
+			border-radius: 10px;
+		}
+		
+		&-caption {
+			$margin: math.div(30,14);
+			margin-top: #{$margin}em;
+			@include getType('caption-p');
+
+			#{$selector}--article & {
+				max-width: 405px;
+			}
+		}
+		
+	}
+
 
 	&-button {
 		@include resetButton;
@@ -273,6 +341,13 @@ img {
 
 		&-label {
 			@include getType('button');
+			color: getColor('white',10);
+		}
+
+		@media (hover: hover){
+			&:hover {
+				cursor: pointer;
+			}
 		}
 
 	}
@@ -287,13 +362,19 @@ img {
 			margin: 0 auto;
 			width: auto;
 		}
+
+		@media (hover: hover){
+			&:hover {
+				cursor: pointer;
+			}
+		}
 	
 	}
 
 }
 
 /* ---------------------------------------------------------------------
-  Blocks
+  Quote Block
 ------------------------------------------------------------------------ */
 .quoteBlock {
 	$selector: &;	
@@ -307,6 +388,7 @@ img {
 
 	&-image {
 		border-radius: 100%;
+		margin: 0 auto;
 		margin-bottom: 6em;
 
 		#{$selector}--intro & {
@@ -319,8 +401,11 @@ img {
 	}
 
 	&-content {
-		padding-top: calc($size + 6em);
 		text-align: center;
+
+		#{$selector}--intro & {
+			padding-top: calc($size + 6em);
+		}
 
 		> * {
 			@include getType('h3-lg');
@@ -337,6 +422,127 @@ img {
 	&-attribution {
 		@include getType('caption-title');
 		text-align: center;
+	}
+
+}
+
+/* ---------------------------------------------------------------------
+  Video Block
+------------------------------------------------------------------------ */
+.videoBlock {
+	max-width: 1600px;
+
+	&-media {
+		border: 1px solid getColor('orange');
+		border-radius: 10px;
+		max-width: 100%;
+
+	}
+
+}
+
+/* ---------------------------------------------------------------------
+  Stats Block
+------------------------------------------------------------------------ */
+.statsBlock {
+	margin-bottom: 15.9em;
+	
+	&-title {
+		$mar: math.div(131,45);
+		$pad: math.div(30,45);
+		@include getType('h3-lg');
+		border-bottom: 1px solid transparent;
+		margin-bottom: #{$mar}em;
+		padding-bottom: #{$pad}em;
+
+		._is-boo & {
+			border-color: getColor('black',10);
+		}
+
+	}
+
+	&-list {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+
+		&-item {
+			display: flex;
+			flex-flow: row wrap;
+			text-align: center;
+		}
+
+		&-dt,
+		&-dd {
+			flex: 0 1 100%;
+		}
+
+		&-dt {
+			@include getType('p1-sm');
+			order: 2;
+		}
+
+		&-dd {
+			$mar: math.div(31,120);
+			@include getType('h1-lg');
+			margin-bottom: #{$mar}em;
+		}
+	
+
+	}
+
+}
+
+/* ---------------------------------------------------------------------
+  Card Block
+------------------------------------------------------------------------ */
+.cardWrap {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+}
+
+.cardBlock {
+	margin: 7.5em 0;
+	flex-basis: 50%;
+
+	&--single {
+		margin-left: 50%;
+		padding-left: 4.5em;
+		padding-right: 0;
+	}
+
+	&:nth-of-type(odd) {
+		padding-right: 4.5em;
+	}
+
+	&:nth-of-type(even) {
+		padding-left: 4.5em;
+	}
+
+	&-title {
+		$pad: math.div(30,45);
+		$mar: math.div(60,45);
+		@include getType('h3-lg');
+		border-bottom: 1px solid transparent;
+		margin-bottom: #{$mar}em;
+		padding-bottom: #{$pad}em;
+
+		._is-wob & {
+			border-color: getColor('white',10);
+		}
+	}
+
+	&-asset {
+
+		&-image {
+			margin-bottom: 6em;
+		}
+		
+	}
+
+	&-content {
+		@include getType('p1-std');
+		
 	}
 
 }
