@@ -1,6 +1,5 @@
 <script setup>
 import Header from './components/shell/Header.vue'
-import Footer from './components/shell/Footer.vue'
 import Splash from './components/Splash.vue'
 import Bulletin from './components/Bulletin.vue'
 import Interlude from './components/Interlude.vue'
@@ -38,7 +37,6 @@ const themes = {
 
   <footer class="primaryFooter _is-wob" id="footer">
     <div class="primaryFooter-helper">Footer Placeholder</div>
-    <!--<Footer />-->
   </footer>
 
   <div id="viewport" class="viewport _is-debug"></div>
