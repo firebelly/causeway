@@ -9,6 +9,16 @@ const props = defineProps({
   hasVideo: Boolean
 })
 
+const options = {
+  placeholder: {
+      video: 'video-placeholder',
+      poster: 'video-placeholder-poster',
+      attrs: ['controls','width=1600']
+  }
+}
+
+const text = (key) => options[props.slug][key]
+
 </script>
 
 <template>
@@ -17,7 +27,12 @@ const props = defineProps({
         :class="`_is-${theme}`">
 
         <QuoteBlock v-if=hasQuote :slug=slug />
-        <VideoBlock v-if=hasVideo :slug=slug />
+
+        <VideoBlock v-if=hasVideo 
+          :src="`${text('video')}`"
+          :poster="`${text('poster')}`"
+          :animation=false
+          />
 
     </section>
 </template>

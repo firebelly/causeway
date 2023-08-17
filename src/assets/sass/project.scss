@@ -149,14 +149,28 @@ img {
 		flex-basis: auto;
 	}
 
+	
 	&-label {
 		$margin: math.div(8,16);
 		margin-left: #{$margin}em;
-		flex-basis: 100%;
+		flex-basis: 50%;
 		align-self: end;
 		color: getColor('white',10);
 		@include getType('nav-title');
 		font-weight: 400;
+
+		&--tag {
+			@include visuallyHide;
+
+			@include breakpoint(md) {
+				@include visuallyShow;
+			}
+		}
+
+		&--helper {
+			flex-basis: 100%;
+		}
+
 	}
 
 	&-buttons {
@@ -200,6 +214,18 @@ img {
 }
 
 /* ---------------------------------------------------------------------
+  PrimaryFooter
+------------------------------------------------------------------------ */
+.primaryFooter {
+
+	&-helper {
+		padding: 10em;
+		text-align: center;
+	}
+}
+
+
+/* ---------------------------------------------------------------------
   Themes
 ------------------------------------------------------------------------ */
 // black-on-white
@@ -231,8 +257,11 @@ img {
 	$selector: &;
 	font-size: 1rem;
 	border-radius: 10px;
-	margin: 6em 0;
-	padding: 0 8.1em;
+	
+	@include breakpoint(md) {
+		margin: 6em 0;
+		padding: 0 8.1em;
+	}
 
 	// Variants
 	///////////////////////////
@@ -277,18 +306,27 @@ img {
 
 	&-title {
 		$margin: math.div(60,120);
-		@include getType('h1-lg');
+		@include getType('h1-sm');
 		margin-bottom: #{$margin}em;
+
+		@include breakpoint(md) {
+			@include getType('h1-lg');
+		}
 
 		#{$selector}--bulletin & {
 			$margin: math.div(96,120);
 			margin-bottom: #{$margin}em;
 			text-align: center;
+			@include getType('h1-xs');
 		}
 
 		#{$selector}--article & {
 			max-width: 675px;
 		}
+	}
+
+	&-subtitle {
+		@include getType('card-title');
 	}
 
 	&-content {
@@ -355,8 +393,12 @@ img {
 	&-arrow {
 		$width: 33.95px;
 		@include resetButton;
-		margin-top: 213.81px;
+		margin-top: 100px;
 		width: calc(100% - #{$width});
+
+		@include breakpoint(md) {
+			margin-top: 213.81px;
+		}
 
 		&-svg {
 			margin: 0 auto;
@@ -430,12 +472,16 @@ img {
   Video Block
 ------------------------------------------------------------------------ */
 .videoBlock {
+	$video: &;
 	max-width: 1600px;
 
 	&-media {
-		border: 1px solid getColor('orange');
-		border-radius: 10px;
 		max-width: 100%;
+
+		#{$video}--embed & {
+			border: 1px solid getColor('orange');
+			border-radius: 10px;
+		}
 
 	}
 
@@ -545,4 +591,19 @@ img {
 		
 	}
 
+}
+
+/* ---------------------------------------------------------------------
+  Post Block
+------------------------------------------------------------------------ */
+.postBlock {
+
+	&-wrap {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+
+	margin: 0 1.5em;
+
+	
 }

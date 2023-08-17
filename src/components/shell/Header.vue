@@ -12,8 +12,11 @@
       width="160" 
       height="37" />  
 
-      <span class="primaryHeader-label">formerly Catchafire</span>
+      <span class="primaryHeader-label primaryHeader-label--tag">formerly Catchafire</span>
 
+      <span class="primaryHeader-label primaryHeader-label--helper">Header Placeholder</span>
+
+      <!--
       <div class="primaryHeader-buttons">
         <button
             class="globalButton globalButton--alt" 
@@ -31,4 +34,5 @@
             </span>
         </button>
       </div>
+    -->
 </template>

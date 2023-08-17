@@ -8,7 +8,7 @@ const props = defineProps({
 
 <template>
 
-    <article>
+    <article class="postBlock">
 
         <img 
             v-if="item.image"

@@ -1,41 +1,36 @@
 <script setup>
 
 const props = defineProps({
-  slug: String
+  src: String,
+  poster: String,
+  caption: String,
+  animation: Boolean
 })
-
-const options = {
-  placeholder: {
-      video: 'video-placeholder',
-      poster: 'video-placeholder-poster',
-      caption: null
-    }
-}
-
-const text = (key) => options[props.slug][key]
 
 </script>
 
 <template>
-    <figure class="videoBlock">
+    <figure 
+      class="videoBlock"
+      :class="props.animation ? ' videoBlock--animation' : ' videoBlock--embed'">
         <video 
-            :poster="`/src/assets/videos/${text('poster')}.png`" 
             class="videoBlock-media"
-            controls 
-            width="1600"
+            :poster="props.poster ? `/src/assets/videos/${props.poster}.png` : ''"
+            :autoplay="!!props.animation"
+            :loop="!!props.animation"
+            muted
             >
             <source 
-                :src="`/src/assets/videos/${text('video')}.webm`" 
+                :src="`/src/assets/videos/${props.src}.webm`" 
                 type="video/webm">
             <source 
-                :src="`/src/assets/videos/${text('video')}.mp4`"
+                :src="`/src/assets/videos/${props.src}.mp4`"
                 type="video/mp4">    
         </video>
         <figcaption 
           class="videoBlock-caption"
-          v-if="text('caption')"
-          v-html="text('caption')">
+          v-if=props.caption
+          v-html="`${props.caption}`">
         </figcaption>
     </figure>
 </template>
-

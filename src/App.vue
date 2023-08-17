@@ -37,7 +37,8 @@ const themes = {
   </main>
 
   <footer class="primaryFooter _is-wob" id="footer">
-    <Footer />
+    <div class="primaryFooter-helper">Footer Placeholder</div>
+    <!--<Footer />-->
   </footer>
 
   <div id="viewport" class="viewport _is-debug"></div>

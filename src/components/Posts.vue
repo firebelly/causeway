@@ -41,15 +41,17 @@ const posts = {
         class="innerSection innerSection--posts"
         :class="`_is-${theme}`">
 
-        <h1 class="innerSection-subtitle">Blog Posts</h1>
+        <h1 class="innerSection-subtitle">Blog Posts Go Here</h1>
 
-        <template
-            v-for="(item, index) in posts" 
-            :key="index">
-        
-            <PostBlock :item=item />
+        <div class="postBlock-wrap">
+            <template
+                v-for="(item, index) in posts" 
+                :key="index">
+            
+                <PostBlock :item=item />
 
-        </template>
+            </template>
+        </div>
 
 
     </section>
