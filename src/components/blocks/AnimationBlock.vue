@@ -20,7 +20,7 @@ const text = (key) => options[props.slug][key]
     <figure class="animationBlock">
         <img 
             class="animationBlock-asset"
-            :src="`../src/assets/images/${text('asset')}`" 
+            :src="`/assets/images/${text('asset')}`" 
             :alt="`${text('alt')}`"
             width="1440"
             height="811" />

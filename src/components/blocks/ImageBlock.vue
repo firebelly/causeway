@@ -12,7 +12,7 @@ const props = defineProps({
     <figure class="innerSection-asset">       
         <img 
             class="innerSection-asset-image"
-            :src="`../src/assets/images/${props.src}.png`" 
+            :src="`/assets/images/${props.src}.png`" 
             :alt="`${props.alt}`"
             width="1440"
             height="811" />

@@ -33,7 +33,7 @@ const text = (key) => options[props.slug][key]
     <figure 
       :class="`quoteBlock quoteBlock--${slug}`">
         <img 
-            :src="`../src/assets/images/quote-${text('image')}.png`" 
+            :src="`/assets/images/quote-${text('image')}.png`" 
             :alt="`${text('alt')}`"
             class="quoteBlock-image"
             width="270"
