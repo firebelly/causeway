@@ -10,7 +10,8 @@ const props = defineProps({
   slug: String,
   theme: String,
   hasStats: Boolean,
-  hasQuote: Boolean
+  hasQuote: Boolean,
+  slide: Boolean
 })
 
 const options = {
@@ -39,7 +40,8 @@ const text = (key) => options[props.slug][key];
 <template>
     <section 
         class="innerSection innerSection--article"        
-        :class="[slug === 'future' ? '_has-bg' : '', `_is-${theme}`]">
+        :class="[slug === 'future' ? '_has-bg' : '', `_is-${theme}`]"
+        :data-slide=props.slide>
         <h1 class="innerSection-title">{{ text('title') }}</h1>
         
         <template v-if="slug !== 'brand'">

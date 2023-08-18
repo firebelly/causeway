@@ -31,6 +31,7 @@ body {
 	background: getColor('white',10);
 	color: getColor('black',10);
 	font-family: $font-primary;
+	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-overflow-scrolling: touch;	
@@ -164,6 +165,7 @@ img {
 
 			@include breakpoint(md) {
 				@include visuallyShow;
+				margin-left: #{$margin}em;
 			}
 		}
 
@@ -209,8 +211,12 @@ img {
   PrimaryContent
 ------------------------------------------------------------------------ */
 .primaryContent {
-	padding: 0 4.5em;
+	padding: 0 2.25em;
 	font-size: 1rem;
+
+	@include breakpoint(lg) {
+		padding: 0 4.5em;
+	}
 }
 
 /* ---------------------------------------------------------------------
@@ -251,13 +257,31 @@ img {
 }
 
 /* ---------------------------------------------------------------------
+  Animating Els
+------------------------------------------------------------------------ */
+[data-slide] {
+	$transition: opacity 1s ease, transform 1s ease;
+	opacity: 0.3;
+	transform: translateY(100px);
+	transition: $transition;
+	
+	&._is-sliding-in {
+		transition: $transition;
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+/* ---------------------------------------------------------------------
   Sections
 ------------------------------------------------------------------------ */
 .innerSection {
 	$selector: &;
 	font-size: 1rem;
 	border-radius: 10px;
-	
+	padding: 0 2.25em;
+
 	@include breakpoint(md) {
 		margin: 6em 0;
 		padding: 0 8.1em;
@@ -269,10 +293,11 @@ img {
 		padding-top: 10em;
 		padding-bottom: 14.963em;
 		width: calc(100vw - 6em); // extend the full-width
-		background-image: url('../images/splash-bg.png');
-		background-position: 100% 23px;
-		background-repeat: no-repeat;
-		background-size: 60%;
+		// background-image: url('../images/splash-bg.png');
+		// background-position: 100% 23px;
+		// background-repeat: no-repeat;
+		// background-size: 60%;
+		position: relative;
 	}
 
 	&--bulletin {
@@ -282,7 +307,12 @@ img {
 	}
 
 	&--article {
-		padding-top: 29.9em;
+		margin-top: 6em;
+		padding-top: 14.2em;
+
+		@include breakpoint(lg) {
+			padding-top: 29.9em;
+		}
 
 		&._has-bg {
 			background-image: url('../images/bg-gradient.png');
@@ -290,6 +320,11 @@ img {
 			background-repeat: no-repeat;
 			background-size: 100%;
 		}
+	}
+
+	&--posts {
+		margin-top: 6em;
+		margin-bottom: 12.9em;
 	}
 	///////////////////////////
  
@@ -324,9 +359,16 @@ img {
 			max-width: 675px;
 		}
 	}
-
+		
 	&-subtitle {
-		@include getType('card-title');
+		// @include getType('card-title');
+		$pad: math.div(30,45);
+		$mar: math.div(60,45);
+		@include getType('h3-lg');
+		border-bottom: 1px solid getColor('black');
+		margin-bottom: #{$mar}em;
+		padding-bottom: #{$pad}em;
+
 	}
 
 	&-content {
@@ -376,15 +418,18 @@ img {
 		padding: 2em;
 		background-color: getColor('blue');
 		color: getColor('white',10);
+		transition: background-color 1s ease;
 
 		&-label {
 			@include getType('button');
 			color: getColor('white',10);
+			pointer-events: none;
 		}
 
 		@media (hover: hover){
 			&:hover {
 				cursor: pointer;
+				background-color: getColor('black');
 			}
 		}
 
@@ -422,11 +467,15 @@ img {
 	$selector: &;	
 	$avatar-size: 270px;
 	$size: math.div($avatar-size,2);
-
+	
 	margin: 0 auto;
 	position: relative;
-	padding-bottom: 13.3em;
+	padding-bottom: 3.3em;
 	max-width: 990px;
+
+	@include breakpoint(lg) {
+		padding-bottom: 13.3em;
+	}
 
 	&-image {
 		border-radius: 100%;
@@ -475,6 +524,13 @@ img {
 	$video: &;
 	max-width: 1600px;
 
+	.innerSection--splash & {
+		position: absolute;
+		left: 8.1em;
+		top: 0;
+		z-index: -1;
+	}
+
 	&-media {
 		max-width: 100%;
 
@@ -482,7 +538,6 @@ img {
 			border: 1px solid getColor('orange');
 			border-radius: 10px;
 		}
-
 	}
 
 }
@@ -508,13 +563,22 @@ img {
 	}
 
 	&-list {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
+
+		@include breakpoint(lg) {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
 
 		&-item {
 			display: flex;
 			flex-flow: row wrap;
 			text-align: center;
+			margin-bottom: 3.1em;
+
+			@include breakpoint(lg) {
+				margin-bottom: 0;
+			}
+
 		}
 
 		&-dt,
@@ -530,7 +594,11 @@ img {
 		&-dd {
 			$mar: math.div(31,120);
 			@include getType('h1-lg');
-			margin-bottom: #{$mar}em;
+
+			@include breakpoint(lg) {
+				margin-bottom: #{$mar}em;
+			}
+			
 		}
 	
 
@@ -542,27 +610,33 @@ img {
   Card Block
 ------------------------------------------------------------------------ */
 .cardWrap {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: flex-end;
+
+	@include breakpoint(lg) {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-end;
+	}
+
 }
 
 .cardBlock {
-	margin: 7.5em 0;
-	flex-basis: 50%;
+	padding: 7.5em 0;
 
-	&--single {
-		margin-left: 50%;
-		padding-left: 4.5em;
-		padding-right: 0;
-	}
-
-	&:nth-of-type(odd) {
-		padding-right: 4.5em;
-	}
-
-	&:nth-of-type(even) {
-		padding-left: 4.5em;
+	@include breakpoint(lg) {
+		flex-basis: 50%;
+	
+		&--single {
+			margin-left: 50%;
+			padding-left: 4.5em;
+			padding-right: 0;
+		}
+		&:nth-of-type(odd) {
+			padding-right: 4.5em;
+		}
+	
+		&:nth-of-type(even) {
+			padding-left: 4.5em;
+		}
 	}
 
 	&-title {
@@ -597,13 +671,78 @@ img {
   Post Block
 ------------------------------------------------------------------------ */
 .postBlock {
+	border: 1px solid getColor('black',20);
+	border-radius: 10px;
+	overflow: hidden;
+	background: getColor('white');
+	font-size: 1rem;
+	margin-bottom: 3em;
 
-	&-wrap {
-		display: flex;
-		flex-flow: row nowrap;
+	@include breakpoint(lg) {
+		margin: 0 1.5em;
 	}
 
-	margin: 0 1.5em;
+	&-wrap {
+		
+		@include breakpoint(lg) {
+			display: flex;
+			flex-flow: row nowrap;
+			margin-left: -1.5em;
+			margin-right: -1.5em;
+		}
+		
+	}
 
+	&-title {
+		$pad: math.div(24,30);
+		$pb: math.div(12,30);
+		display: block;
+		overflow: hidden;
+		color: getColor('black',10);
+		padding: #{$pad}em #{$pad}em #{$pb}em #{$pad}em;
+		text-overflow: ellipsis;
+		@include getType('card-title');
+
+		&:link,
+		&:visited,
+		&:active {
+			text-decoration: none;
+		}
+	}
+
+	&-image {
+		display: block;
+		width: 100%;
+	}
+
+	&-content {
+		font-size: 1rem;
+		padding: 2.451em;
+		border-top: 1px solid getColor('gray');
+	}
+
+	&-date {
+		$pad: math.div(24,18);
+		@include getType('card-subtitle');
+		display: block;
+		padding: 0 #{$pad}em #{$pad}em #{$pad}em;
+	}
+
+	&-figure {
+		display: flex;
+		align-items: center;
+	}
+
+	&-avatar {
+		height: 49px;
+		width: 49px;
+		border-radius: 100%;
+		margin-right: 1.26em,
+	}
+
+	&-byline {
+		@include getType('card-byline');
+	}
+	
 	
 }

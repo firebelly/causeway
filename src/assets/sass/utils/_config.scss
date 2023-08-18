@@ -40,8 +40,8 @@ $primary-name: 'Inter Regular';
 $primary-file: 'Inter-Regular';
 $primary-serif: 'sans-serif'; // e.g. sans-serif || serif
 
-$secondary-name: 'GT Ultra Standard Black Trial';
-$secondary-file: 'GT-Ultra-Standard-Black-Trial';
+$secondary-name: 'GT Ultra Median Black Trial';
+$secondary-file: 'GT-Ultra-Median-Black-Trial';
 $secondary-serif: 'serif';
 
 $tertiary-name: 'GT Ultra Median Regular Trial';
@@ -92,6 +92,9 @@ $palettes: (
 		core: #000000,
 		10: #292525,
 		20: #595956
+	),
+	'gray': (
+		core: #C8C2C2
 	)
 
 );

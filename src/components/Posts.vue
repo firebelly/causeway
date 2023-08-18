@@ -2,7 +2,8 @@
 import PostBlock from './blocks/PostBlock.vue'
 
 const props = defineProps({
-  theme: String
+  theme: String,
+  slide: Boolean
 })
 
 const posts = {
@@ -39,7 +40,8 @@ const posts = {
     
     <section 
         class="innerSection innerSection--posts"
-        :class="`_is-${theme}`">
+        :class="`_is-${theme}`"
+        :data-slide=props.slide>
 
         <h1 class="innerSection-subtitle">Blog Posts Go Here</h1>
 

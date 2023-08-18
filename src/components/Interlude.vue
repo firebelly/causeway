@@ -6,7 +6,8 @@ const props = defineProps({
   theme: String,
   slug: String,
   hasQuote: Boolean,
-  hasVideo: Boolean
+  hasVideo: Boolean,
+  slide: Boolean
 })
 
 const options = {
@@ -32,6 +33,7 @@ const text = (key) => options[props.slug][key]
           :src="`${text('video')}`"
           :poster="`${text('poster')}`"
           :animation=false
+          slide
           />
 
     </section>

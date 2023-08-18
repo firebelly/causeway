@@ -4,7 +4,8 @@ const props = defineProps({
   src: String,
   poster: String,
   caption: String,
-  animation: Boolean
+  animation: Boolean,
+  slide: Boolean
 })
 
 </script>

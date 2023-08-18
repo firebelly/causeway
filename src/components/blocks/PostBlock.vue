@@ -18,8 +18,9 @@ const props = defineProps({
             width="460"
             height="389" />
 
-        <h1 class="postBlock-title">
+        <h1>
             <a 
+                class="postBlock-title"
                 :href="`${item.link}`"
                 title="Read More">
                 {{ item.title }}
@@ -28,16 +29,22 @@ const props = defineProps({
 
         <time datetime="2018-07-07" class="postBlock-date">{{ item.date }}</time>
 
-        <img 
-            v-if="item.image"
-            :src="`${item.avatar}`" 
-            :alt="`${item.alt}`"
-            class="postBlock-avatar"
-            width="49"
-            height="49" />
+        <div class="postBlock-content">
+            
+            <figure class="postBlock-figure">
+                <img 
+                    v-if="item.image"
+                    :src="`${item.avatar}`" 
+                    :alt="`${item.alt}`"
+                    class="postBlock-avatar"
+                    width="49"
+                    height="49" />
 
-        <p class="postBlock-byline">{{ item.byline }}</p>
-        
+                <figcaption>
+                    <p class="postBlock-byline">{{ item.byline }}</p>
+                </figcaption>
+            </figure>
+        </div>
     </article>
 
 </template>

@@ -3,6 +3,7 @@
 const props = defineProps({
   slug: String,
   theme: String,
+  slide: Boolean
 })
 
 const options = {
@@ -20,7 +21,8 @@ const text = (key) => options[props.slug][key]
 <template>
     <section 
         class="innerSection innerSection--bulletin"
-        :class="`_is-${theme}`">
+        :class="`_is-${theme}`"
+        :data-slide=props.slide>
         <h1 class="innerSection-prelude">{{ text('prelude') }}</h1>
         <h2 class="innerSection-title">{{ text('title') }}</h2>
         <div 

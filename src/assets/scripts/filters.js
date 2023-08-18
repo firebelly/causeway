@@ -22,4 +22,4 @@ export default {
             return val.toLowerCase().split(' ').join('-');
         }
     }
-  };
+};
