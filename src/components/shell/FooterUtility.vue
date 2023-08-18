@@ -45,7 +45,7 @@ const socialLinks = [
                 >
                 <img
                     alt="Abbreviated Causeway Logo" 
-                    :src="`src/assets/svgs/social-${filters.lowercase(item)}.svg`" 
+                    :src="`../src/assets/svgs/social-${filters.lowercase(item)}.svg`" 
                     width="20" 
                     height="20" />
                 <span class="socialLinks-label">{{ item }}</span>

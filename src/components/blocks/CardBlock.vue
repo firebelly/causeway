@@ -38,7 +38,7 @@ const text = (key) => options[props.slug][key]
 
         <figure class="cardBlock-asset" v-if="text('image')">
             <img 
-                :src="`src/assets/images/card-${text('image')}.png`" 
+                :src="`../src/assets/images/card-${text('image')}.png`" 
                 :alt="`${text('alt')}`"
                 class="cardBlock-asset-image"
                 width="1440"
