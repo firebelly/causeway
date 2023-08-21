@@ -29,6 +29,7 @@ const options = {
         title: 'Where we\'re going.',
         content: '<p>Causeway is a place for people to come together to do good. We bring together government, philanthropy, business, and volunteers with the goal of bridging paths to stronger communities. Every day we help communities grow stronger by listening to what they need and making sure they get resources.</p>',
         video: 'where-were-going-build',
+        variant: 'full',
         attrs: ['autoplay','muted','loop']
     }
 }
@@ -52,6 +53,7 @@ const text = (key) => options[props.slug][key];
 
             <VideoBlock v-if="text('video')" 
                 :src="`${text('video')}`"
+                :variant="`${text('variant')}`"
                 :animation=true
             />
 
@@ -69,7 +71,11 @@ const text = (key) => options[props.slug][key];
             
             <div class="cardWrap">
                 <CardBlock slug="name" variant="single" />
-                <AnimationBlock slug="placeholder" />
+                <VideoBlock 
+                    :src="`causeway-logo`"
+                    :variant="`card`"
+                    :animation=true
+                />
                 <CardBlock slug="logo" variant="single" />
                 <CardBlock slug="typography" />
                 <CardBlock slug="paths" />

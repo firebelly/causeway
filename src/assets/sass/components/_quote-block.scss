@@ -1,0 +1,59 @@
+@use "../utils/_utils" as *;
+@use "sass:math";
+
+/* ---------------------------------------------------------------------
+  Quote Block
+------------------------------------------------------------------------ */
+.quoteBlock {
+	$selector: &;	
+	$avatar-size: 270px;
+	$size: math.div($avatar-size,2);
+	
+	margin: 0 auto;
+	position: relative;
+	padding-bottom: 3.3em;
+	max-width: 990px;
+
+	@include breakpoint(lg) {
+		padding-bottom: 13.3em;
+	}
+
+	&-image {
+		border-radius: 100%;
+		margin: 0 auto;
+		margin-bottom: 6em;
+
+		#{$selector}--intro & {
+			position: absolute;
+			margin-left: $size * -1;
+			left: 50%;
+			top: $size * -1;
+		}
+		
+	}
+
+	&-content {
+		text-align: center;
+
+		#{$selector}--intro & {
+			padding-top: calc($size + 6em);
+		}
+
+		> * {
+			@include getType('h3-lg');
+		}
+
+		&::after {
+			content: "\2013";
+			@include getType('h3-lg');
+			display: inline-block;
+			text-align: center;
+		}
+	}
+
+	&-attribution {
+		@include getType('caption-title');
+		text-align: center;
+	}
+
+}
