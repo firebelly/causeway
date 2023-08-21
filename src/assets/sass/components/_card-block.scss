@@ -1,0 +1,63 @@
+@use "../utils/_utils" as *;
+@use "sass:math";
+
+/* ---------------------------------------------------------------------
+  Card Block
+------------------------------------------------------------------------ */
+.cardWrap {
+
+	@include breakpoint(lg) {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-end;
+	}
+
+}
+
+.cardBlock {
+	padding: 7.5em 0;
+
+	@include breakpoint(lg) {
+		flex-basis: 50%;
+	
+		&--single {
+			margin-left: 50%;
+			padding-left: 4.5em;
+			padding-right: 0;
+		}
+		&:nth-of-type(odd) {
+			padding-right: 4.5em;
+		}
+	
+		&:nth-of-type(even) {
+			padding-left: 4.5em;
+		}
+	}
+
+	&-title {
+		$pad: math.div(30,45);
+		$mar: math.div(60,45);
+		@include getType('h3-lg');
+		border-bottom: 1px solid transparent;
+		margin-bottom: #{$mar}em;
+		padding-bottom: #{$pad}em;
+
+		._is-wob & {
+			border-color: getColor('white',10);
+		}
+	}
+
+	&-asset {
+
+		&-image {
+			margin-bottom: 6em;
+		}
+		
+	}
+
+	&-content {
+		@include getType('p1-std');
+		
+	}
+
+}

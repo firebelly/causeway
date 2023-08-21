@@ -6,5 +6,8 @@
  2. Order matters
  3. @forward make everything available when __components is loaded via @use rule within other stylesheets
 ------------------------------------------------------------------------ */
-@forward 'dropdown-menu';
-@forward 'checkbox-form';
+@forward 'video-block';
+@forward 'quote-block';
+@forward 'stats-block';
+@forward 'card-block';
+@forward 'post-block';
