@@ -10,6 +10,16 @@
 
     &._is-full {
         width: 100vw;
+        margin-left: calc(2.25em + 2.25em) * -1;
+
+        @include breakpoint(md) {
+            margin-left: calc(8.1em + 2.25em) * -1;
+        }
+
+        @include breakpoint(lg) {
+            margin-left: calc(8.1em + 4.5em) * -1;
+        }
+        
     }
 
     &._is-card {
