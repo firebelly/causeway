@@ -1,0 +1,66 @@
+@use "../utils/_utils" as *;
+@use "sass:math";
+
+/* ---------------------------------------------------------------------
+  Stats Block
+------------------------------------------------------------------------ */
+.statsBlock {
+	margin-bottom: 15.9em;
+	
+	&-title {
+		$mar: math.div(131,45);
+		$pad: math.div(30,45);
+		@include getType('h3-lg');
+		border-bottom: 1px solid transparent;
+		margin-bottom: #{$mar}em;
+		padding-bottom: #{$pad}em;
+
+		._is-boo & {
+			border-color: getColor('black',10);
+		}
+
+	}
+
+	&-list {
+
+		@include breakpoint(lg) {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		&-item {
+			display: flex;
+			flex-flow: row wrap;
+			text-align: center;
+			margin-bottom: 3.1em;
+
+			@include breakpoint(lg) {
+				margin-bottom: 0;
+			}
+
+		}
+
+		&-dt,
+		&-dd {
+			flex: 0 1 100%;
+		}
+
+		&-dt {
+			@include getType('p1-sm');
+			order: 2;
+		}
+
+		&-dd {
+			$mar: math.div(31,120);
+			@include getType('h1-lg');
+
+			@include breakpoint(lg) {
+				margin-bottom: #{$mar}em;
+			}
+			
+		}
+	
+
+	}
+
+}

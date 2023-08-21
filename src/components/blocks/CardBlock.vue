@@ -1,4 +1,5 @@
 <script setup>
+import VideoBlock from './VideoBlock.vue'
 
 const props = defineProps({
   slug: String,
@@ -8,7 +9,7 @@ const props = defineProps({
 const options = {
     name: {
       title: 'Our name',
-      content: '<p>Causeway evokes forward momentum and clears a path for nonprofits to accomplish more.</p>',
+      content: '<p>Causeway evokes forward momentum and clears a path for nonprofits to accomplish more.</p>'
     },
     logo: {
       title: 'Our logo',
@@ -22,7 +23,8 @@ const options = {
     paths: {
       title: 'Gestural paths',
       content: '<p>Gestural paths bring energy, spontaneity, and progressive movement into the mix of our design elements, adding visual interest as a supporting element.</p>',
-      image: 'paths'
+      video: 'speed-strokes',
+      variant: 'card'
     }
 }
 
@@ -48,6 +50,12 @@ const text = (key) => options[props.slug][key]
                 v-html="text('content')">
             </figcaption>
         </figure>
+
+        <VideoBlock v-if="text('video')" 
+            :src="`${text('video')}`"
+            :variant="`${text('variant')}`"
+            :animation=true
+        />
 
         <div 
             v-if="! text('image')"

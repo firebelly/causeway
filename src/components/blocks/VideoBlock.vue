@@ -2,6 +2,7 @@
 
 const props = defineProps({
   src: String,
+  variant: String,
   poster: String,
   caption: String,
   animation: Boolean,
@@ -13,7 +14,7 @@ const props = defineProps({
 <template>
     <figure 
       class="videoBlock"
-      :class="props.animation ? ' videoBlock--animation' : ' videoBlock--embed'">
+      :class="props.animation ? ( props.variant ? `videoBlock--animation _is-${props.variant}` : 'videoBlock--animation' ): ' videoBlock--embed'">
         <video 
             class="videoBlock-media"
             :poster="props.poster ? `/assets/videos/${props.poster}.png` : ''"

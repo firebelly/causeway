@@ -1,0 +1,36 @@
+@use "../utils/_utils" as *;
+@use "sass:math";
+
+/* ---------------------------------------------------------------------
+  Video Block
+------------------------------------------------------------------------ */
+.videoBlock {
+	$video: &;
+	max-width: 1600px;
+
+    &._is-full {
+        width: 100vw;
+    }
+
+    &._is-card {
+        margin-bottom: 6em;
+    }
+
+	.innerSection--splash & {
+		position: absolute;
+		left: 8.1em;
+		top: 0;
+		z-index: -1;
+	}
+
+	&-media {
+		max-width: 100%;
+
+		#{$video}--embed & {
+			border: 1px solid getColor('orange');
+			border-radius: 10px;
+		}
+
+	}
+
+}

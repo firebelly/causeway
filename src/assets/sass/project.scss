@@ -344,19 +344,23 @@ img {
 		@include getType('h1-sm');
 		margin-bottom: #{$margin}em;
 
-		@include breakpoint(md) {
-			@include getType('h1-lg');
-		}
-
 		#{$selector}--bulletin & {
 			$margin: math.div(96,120);
 			margin-bottom: #{$margin}em;
 			text-align: center;
-			@include getType('h1-xs');
+			@include getType('h3-lg');
+
+			@include breakpoint(md) {
+				@include getType('h1-lg');
+			}
 		}
 
 		#{$selector}--article & {
 			max-width: 675px;
+		}
+
+		@include breakpoint(md) {
+			@include getType('h1-lg');
 		}
 	}
 		
